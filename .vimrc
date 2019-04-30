@@ -143,6 +143,7 @@ set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936
 set fileencoding=utf-8
 set termencoding=utf-8
+set clipboard=unnamed
 
 " 文件类型设置
 autocmd BufNewFile,BufRead *.vue set filetype=html
@@ -209,27 +210,31 @@ func! Run()
   let file = expand("%")
   if stridx(file,".js")>-1
     exec "w"
-    exec "! node %<"
+    exec "! clear && node %<"
   endif
   if stridx(file,".ts")>-1
     exec "w"
-    exec "! ts-node %"
+    exec "! clear && ts-node %"
   endif
   if stridx(file,".go")>-1
     exec "w"
-    exec "! go run %"
+    exec "! clear && go run %"
   endif
   if stridx(file,".dart")>-1
     exec "w"
-    exec "! dart %"
+    exec "! clear && dart %"
   endif
   if stridx(file,".java")>-1
     exec "w"
-    exec "! javac % && java %<"
+    exec "! clear && javac % && java %<"
   endif
   if stridx(file,".c")>-1
     exec "w"
-    exec "! gcc % && ./a.out"
+    exec "! clear && gcc % && ./a.out"
+  endif
+  if stridx(file,".m")>-1
+    exec "w"
+    exec "! clear && gcc % -o objc -ObjC -framework Foundation && ./objc"
   endif
 endfunc
 
