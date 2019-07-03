@@ -6,6 +6,14 @@ Bundle "gmarik/vundle"
 
 " go
 Bundle "fatih/vim-go"
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_def_mode = 'gopls'
+let g:go_info_mode = 'gopls'
 
 " md
 Bundle "suan/vim-instant-markdown"
@@ -83,8 +91,8 @@ Bundle "mhinz/vim-signify"
 Bundle "w0rp/ale"
 let g:ale_linters = {
       \   'javascript': ['eslint'],
-      \   'typescript': ['tslint'],
-      \   'go': ['gofmt', 'golint', 'govet'],
+      \   'typescript': [''],
+      \   'go': ['gofmt', 'golint', 'govet', 'gopls'],
       \   'dart': ['language_server']
       \}
 let g:airline#extensions#ale#enabled = 1
@@ -95,7 +103,8 @@ highlight clear ALEWarningSign
 highlight ALEErrorSign ctermbg=235
 
 " 代码变动不检查
-" let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
 " 代码格式化
 let g:ale_fixers = {
       \   'html': ['prettier'],
@@ -217,12 +226,13 @@ func! Run()
     exec "! clear && ts-node %"
   endif
   if stridx(file,".go")>-1
-    exec "w"
-    exec "! clear && go run %"
+"    exec "w"
+"     exec "! clear && go run %"
+    exec "! curl http://127.0.0.1:3000/%<"
   endif
   if stridx(file,".dart")>-1
     exec "w"
-    exec "! clear && dart %"
+    exec "! clear && dart --enable-asserts %"
   endif
   if stridx(file,".java")>-1
     exec "w"
