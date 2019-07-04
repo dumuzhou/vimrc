@@ -1,11 +1,27 @@
-
 " 管理插件的插件
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle "gmarik/vundle"
-
-" go
-Bundle "fatih/vim-go"
+call plug#begin('~/.vim/plugged')
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'suan/vim-instant-markdown'
+Plug 'dart-lang/dart-vim-plugin', { 'do': 'pub global activate dart_language_server' }
+Plug 'mauritsvdvijgh/flutter-reload.vim'
+Plug 'natebosch/vim-lsc'
+Plug 'tomasr/molokai'
+Plug 'edkolev/tmuxline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'dumuzhou/emmet-vim'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --ts-completer' }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'Quramy/tsuquyomi'
+Plug 'w0rp/ale', { 'do': 'yarn global add prettier' }
+Plug 'chemzqm/vim-jsx-improve'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'mhinz/vim-signify'
+call plug#end()
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_fields = 1
@@ -16,13 +32,9 @@ let g:go_def_mode = 'gopls'
 let g:go_info_mode = 'gopls'
 
 " md
-Bundle "suan/vim-instant-markdown"
 
 " dart
-Bundle "dart-lang/dart-vim-plugin"
-Bundle "mauritsvdvijgh/flutter-reload.vim"
 " Bundle "thosakwe/vim-flutter"
-Bundle "natebosch/vim-lsc"
 let g:lsc_server_commands = {'dart': 'dart_language_server'}
 let g:lsc_auto_map = v:true
 let g:lsc_auto_map = {'defaults': v:true, 'FindReferences': '<leader>r'}
@@ -44,7 +56,6 @@ let g:lsc_auto_map = {
       \}
 
 " 配色
-Bundle "tomasr/molokai"
 filetype indent on
 filetype plugin indent on
 filetype on
@@ -54,25 +65,17 @@ colorscheme molokai
 let g:molokai_original = 0
 
 " air-line
-Bundle "edkolev/tmuxline.vim"
-Bundle "vim-airline/vim-airline"
-Bundle "vim-airline/vim-airline-themes"
 let g:airline_theme="onedark"
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " html补全
-Bundle "dumuzhou/emmet-vim"
-
-Bundle "SirVer/ultisnips"
-Bundle "honza/vim-snippets"
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " 代码补全
-Bundle "Valloric/YouCompleteMe"
 let g:ycm_min_num_of_chars_for_completion = 3
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_complete_in_comments = 1
@@ -80,15 +83,11 @@ let g:ycm_key_list_select_completion = ["<c-n>", "<Down>"]
 let g:ycm_key_list_previous_completion = ["<c-p>", "<Up>"]
 
 " 文件夹和注释
-Bundle "The-NERD-tree"
-Bundle "The-NERD-Commenter"
 
 " svn和git提示
-Bundle "mhinz/vim-signify"
 
 
 " 语法错误提示
-Bundle "w0rp/ale"
 let g:ale_linters = {
       \   'javascript': ['eslint'],
       \   'typescript': [''],
@@ -121,14 +120,9 @@ let g:ale_linters_explicit = 1
 let g:ale_fix_on_save = 1
 
 " jsx高亮和缩进
-Bundle "chemzqm/vim-jsx-improve"
-Bundle "MaxMEllon/vim-jsx-pretty"
 let g:jsx_ext_required = 0
 
 " typescript
-Bundle "leafgarland/typescript-vim"
-Bundle "HerringtonDarkholme/yats.vim"
-Bundle "Quramy/tsuquyomi"
 let g:typescript_ignore_browserwords = 1
 autocmd BufNewFile,BufRead *.ts set filetype=typescript
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript
@@ -259,9 +253,4 @@ function! MyTabFunction ()
   return pumvisible() ? "\<c-n>" : "\<c-x>\<c-o>"
 endfunction
 
-
 " brew install cmake go
-" git clone https://github.com/gmarik/vundle.git  ~/.vim/bundle/vundle
-" yarn global add  js-beautify eslint
-" install.py --go-completer
-" tern install
