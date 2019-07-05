@@ -1,5 +1,8 @@
 " 管理插件的插件
 call plug#begin('~/.vim/plugged')
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'suan/vim-instant-markdown'
 Plug 'dart-lang/dart-vim-plugin', { 'do': 'pub global activate dart_language_server' }
@@ -22,6 +25,14 @@ Plug 'chemzqm/vim-jsx-improve'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'mhinz/vim-signify'
 call plug#end()
+
+call glaive#Install()
+Glaive codefmt plugin[mappings]
+Glaive codefmt google_java_executable="java -jar /java/google-java-format-1.7-all-deps.jar"
+augroup autoformat_settings
+  autocmd FileType java AutoFormatBuffer google-java-format
+augroup END
+
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_fields = 1
