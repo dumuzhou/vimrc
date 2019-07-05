@@ -234,7 +234,7 @@ func! Run()
   if stridx(file,".go")>-1
 "    exec "w"
 "     exec "! clear && go run %"
-    exec "! curl http://127.0.0.1:3000/%<"
+    exec "! curl http://127.0.0.1:6666/%<"
   endif
   if stridx(file,".dart")>-1
     exec "w"
