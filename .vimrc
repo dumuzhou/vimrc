@@ -26,9 +26,10 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'mhinz/vim-signify'
 call plug#end()
 
-call glaive#Install()
-Glaive codefmt plugin[mappings]
-Glaive codefmt google_java_executable="java -jar /java/google-java-format-1.7-all-deps.jar"
+# colorscheme molokai
+# call glaive#Install()
+# Glaive codefmt plugin[mappings]
+# Glaive codefmt google_java_executable="java -jar /java/google-java-format-1.7-all-deps.jar"
 augroup autoformat_settings
   autocmd FileType java AutoFormatBuffer google-java-format
   autocmd FileType python AutoFormatBuffer yapf
@@ -73,7 +74,6 @@ filetype plugin indent on
 filetype on
 syntax on
 set t_Co=256
-colorscheme molokai
 let g:molokai_original = 0
 
 " air-line
