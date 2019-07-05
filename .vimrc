@@ -13,7 +13,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dumuzhou/emmet-vim'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --ts-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --ts-completer --java-completer' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
