@@ -126,7 +126,6 @@ let g:ale_fixers = {
       \   'go': ['gofmt'],
       \   'dart': ['dartfmt'],
       \   'c': ['clang-format'],
-      \   'java': ['google_java_format'],
       \}
 let g:ale_linters_explicit = 1
 let g:ale_fix_on_save = 1
