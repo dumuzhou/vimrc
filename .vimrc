@@ -20,16 +20,16 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Quramy/tsuquyomi'
-Plug 'w0rp/ale', { 'do': 'yarn global add prettier' }
+Plug 'w0rp/ale', { 'do': 'yarn global add prettier typescript' }
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'mhinz/vim-signify'
 call plug#end()
 
-" colorscheme molokai
-" call glaive#Install()
-" Glaive codefmt plugin[mappings]
-" Glaive codefmt google_java_executable="java -jar /java/google-java-format-1.7-all-deps.jar"
+colorscheme molokai
+call glaive#Install()
+Glaive codefmt plugin[mappings]
+Glaive codefmt google_java_executable="java -jar /java/google-java-format-1.7-all-deps.jar"
 augroup autoformat_settings
   autocmd FileType java AutoFormatBuffer google-java-format
   autocmd FileType python AutoFormatBuffer yapf
