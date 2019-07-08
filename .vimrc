@@ -20,7 +20,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Quramy/tsuquyomi'
-Plug 'w0rp/ale', { 'do': 'yarn global add prettier typescript' }
+Plug 'w0rp/ale', { 'do': 'yarn global add prettier typescript ts-node' }
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'mhinz/vim-signify'
@@ -102,7 +102,6 @@ let g:ycm_key_list_previous_completion = ["<c-p>", "<Up>"]
 " 语法错误提示
 let g:ale_linters = {
       \   'javascript': ['eslint'],
-      \   'typescript': [''],
       \   'go': ['gofmt', 'golint', 'govet', 'gopls'],
       \   'dart': ['language_server']
       \}
@@ -114,7 +113,7 @@ highlight clear ALEWarningSign
 highlight ALEErrorSign ctermbg=235
 
 " 代码变动不检查
-let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
 " 代码格式化
 let g:ale_fixers = {
