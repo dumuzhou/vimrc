@@ -11,9 +11,8 @@ Plug 'natebosch/vim-lsc'
 Plug 'tomasr/molokai'
 Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'dumuzhou/emmet-vim'
-Plug 'Valloric/YouCompleteMe', { 'do': 'cd ~/.vim/plugged/ && rm -Rf YouCompleteMe && git clone https://github.com/ycm-core/YouCompleteMe && cd YouCompleteMe && git reset --hard c25e && git submodule update --init --recursive && ./install.py --ts-completer --java-completer' }
+Plug 'Valloric/YouCompleteMe', { 'commit': 'c25e449f4e72667aca3d18d8bfccd7b289b2e9a1', 'do': './install.py --ts-completer --java-completer' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -77,7 +76,6 @@ set t_Co=256
 let g:molokai_original = 0
 
 " air-line
-let g:airline_theme="onedark"
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -125,6 +123,7 @@ let g:ale_fixers = {
       \   'go': ['gofmt'],
       \   'dart': ['dartfmt'],
       \   'c': ['clang-format'],
+      \   'java': ['googlo_java_format'],
       \}
 let g:ale_linters_explicit = 1
 let g:ale_fix_on_save = 1
