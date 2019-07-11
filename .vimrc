@@ -16,6 +16,7 @@ Plug 'Valloric/YouCompleteMe', { 'commit': 'c25e449f4e72667aca3d18d8bfccd7b289b2
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdcommenter'
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Quramy/tsuquyomi'
