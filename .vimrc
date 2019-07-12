@@ -11,7 +11,7 @@ Plug 'natebosch/vim-lsc'
 Plug 'tomasr/molokai'
 Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'mattn/emmet-vim', { 'commit': '5de9567e6d9bc4f3f9f334b42951f63b9c809263' }
+Plug 'mattn/emmet-vim'
 Plug 'Valloric/YouCompleteMe', { 'commit': 'c25e449f4e72667aca3d18d8bfccd7b289b2e9a1', 'do': './install.py --ts-completer --java-completer' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
