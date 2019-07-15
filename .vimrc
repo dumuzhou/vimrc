@@ -12,7 +12,8 @@ Plug 'tomasr/molokai'
 Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'mattn/emmet-vim'
-Plug 'Valloric/YouCompleteMe', { 'commit': 'c25e449f4e72667aca3d18d8bfccd7b289b2e9a1', 'do': './install.py --ts-completer --java-completer' }
+Plug 'Valloric/YouCompleteMe', { 'commit': 'c25e449f4e72667aca3d18d8bfccd7b289b2e9a1', 'do': 'mkdir /root/ycm_build && cd /root/ycm_build && cmake -G "<generator>" . ~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp
+ && cd /root/.vim/plugged/YouCompleteMe && ./install.py --ts-completer --java-completer --clangd-completer' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -26,6 +27,7 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'mhinz/vim-signify'
 call plug#end()
 
+let g:ycm_clangd_binary_path = "/usr/lib/llvm-8/bin/clangd"
 colorscheme molokai
 call glaive#Install()
 Glaive codefmt plugin[mappings]
@@ -222,32 +224,25 @@ nnoremap <Leader>0 :10b<CR>
 func! Run()
   let file = expand("%")
   if stridx(file,".js")>-1
-    exec "w"
     exec "! clear && node %<"
   endif
   if stridx(file,".ts")>-1
-    exec "w"
     exec "! clear && ts-node %"
   endif
   if stridx(file,".go")>-1
-"    exec "w"
-"     exec "! clear && go run %"
-    exec "! curl http://127.0.0.1:6666/%<"
+    exec "! clear && go run %"
+"    exec "! curl http://127.0.0.1:6666/%<"
   endif
   if stridx(file,".dart")>-1
-    exec "w"
     exec "! clear && dart --enable-asserts %"
   endif
   if stridx(file,".java")>-1
-    exec "w"
     exec "! clear && javac % && java %<"
   endif
   if stridx(file,".c")>-1
-    exec "w"
     exec "! clear && gcc % && ./a.out"
   endif
   if stridx(file,".m")>-1
-    exec "w"
     exec "! clear && gcc % -o objc -ObjC -framework Foundation && ./objc"
   endif
 endfunc
