@@ -12,8 +12,7 @@ Plug 'tomasr/molokai'
 Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'mattn/emmet-vim'
-Plug 'Valloric/YouCompleteMe', { 'commit': 'c25e449f4e72667aca3d18d8bfccd7b289b2e9a1', 'do': 'mkdir /root/ycm_build && cd /root/ycm_build && cmake -G "Unix Makefiles" . ~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp
- && cd /root/.vim/plugged/YouCompleteMe && ./install.py --ts-completer --java-completer --clangd-completer' }
+Plug 'Valloric/YouCompleteMe', { 'commit': 'c25e449f4e72667aca3d18d8bfccd7b289b2e9a1', 'do': 'cd /root && ./sh.sh' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
