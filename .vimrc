@@ -102,7 +102,7 @@ let g:ycm_key_list_previous_completion = ["<c-p>", "<Up>"]
 " 语法错误提示
 let g:ale_linters = {
       \   'javascript': ['eslint'],
-      \   'go': ['gofmt', 'golint', 'govet', 'gopls'],
+      \   'go': ['govet'],
       \   'dart': ['language_server']
       \}
 let g:airline#extensions#ale#enabled = 1
