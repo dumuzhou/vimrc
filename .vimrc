@@ -20,7 +20,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Quramy/tsuquyomi'
-Plug 'w0rp/ale', { 'do': 'yarn global add prettier typescript ts-node' }
+Plug 'w0rp/ale', { 'do': 'yarn global add prettier typescript ts-node && apt install -y clang-format' }
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'mhinz/vim-signify'
