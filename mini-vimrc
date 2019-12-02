@@ -1,0 +1,26 @@
+call plug#begin('~/.vim/plugged')
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'suan/vim-instant-markdown'
+Plug 'dart-lang/dart-vim-plugin', { 'do': 'pub global activate dart_language_server' }
+Plug 'mauritsvdvijgh/flutter-reload.vim'
+Plug 'natebosch/vim-lsc'
+Plug 'tomasr/molokai'
+Plug 'edkolev/tmuxline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'mattn/emmet-vim'
+Plug 'Valloric/YouCompleteMe', { 'do': 'cd /root && ./sh.sh' }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdcommenter'
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'Quramy/tsuquyomi'
+Plug 'w0rp/ale', { 'do': 'yarn global add prettier typescript ts-node && apt install -y clang-format' }
+Plug 'chemzqm/vim-jsx-improve'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'mhinz/vim-signify'
+call plug#end()
