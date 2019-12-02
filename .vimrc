@@ -3,7 +3,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'suan/vim-instant-markdown'
 Plug 'dart-lang/dart-vim-plugin', { 'do': 'pub global activate dart_language_server' }
 Plug 'mauritsvdvijgh/flutter-reload.vim'
@@ -26,7 +25,7 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'mhinz/vim-signify'
 call plug#end()
 
-let g:ycm_clangd_binary_path = "/usr/lib/llvm-8/bin/clangd"
+let g:ycm_clangd_binary_path = "/usr/lib/llvm-9/bin/clangd"
 colorscheme molokai
 call glaive#Install()
 Glaive codefmt plugin[mappings]
@@ -36,14 +35,6 @@ augroup autoformat_settings
   autocmd FileType python AutoFormatBuffer yapf
 augroup END
 
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_def_mode = 'gopls'
-let g:go_info_mode = 'gopls'
 
 " md
 
