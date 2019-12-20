@@ -3,7 +3,7 @@ Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 Plug 'suan/vim-instant-markdown'
-Plug 'dart-lang/dart-vim-plugin', { 'do': 'pub global activate dart_language_server' }
+# Plug 'dart-lang/dart-vim-plugin', { 'do': 'pub global activate dart_language_server' }
 Plug 'mauritsvdvijgh/flutter-reload.vim'
 Plug 'natebosch/vim-lsc'
 Plug 'tomasr/molokai'
