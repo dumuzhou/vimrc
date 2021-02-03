@@ -1,69 +1,49 @@
-" 管理插件的插件
+" 插件
 call plug#begin('~/.vim/plugged')
-Plug 'google/vim-maktaba'
-Plug 'google/vim-codefmt'
-Plug 'google/vim-glaive'
-Plug 'suan/vim-instant-markdown'
-Plug 'dart-lang/dart-vim-plugin', { 'do': 'pub global activate dart_language_server' }
-Plug 'mauritsvdvijgh/flutter-reload.vim'
-Plug 'natebosch/vim-lsc'
+" coc
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-html coc-css coc-omnisharp coc-pyright coc-snippets coc-emmet coc-json coc-flutter coc-angular coc-vetur coc-java coc-json coc-prettier coc-git coc-go coc-clangd coc-rust-analyzer'}
+Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
+Plug 'junegunn/fzf.vim' " needed for previews
+Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+"Plug 'mauritsvdvijgh/flutter-reload.vim'
+
+" 代码片段
+Plug 'dumuzhou/vim-snippets'
+
+" 缩进和高亮
 Plug 'tomasr/molokai'
+Plug 'leafoftree/vim-vue-plugin'
 Plug 'edkolev/tmuxline.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'mattn/emmet-vim'
-Plug 'Valloric/YouCompleteMe', { 'do': 'cd /root && ./sh.sh' }
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'scrooloose/nerdcommenter'
-Plug 'leafgarland/typescript-vim'
-Plug 'HerringtonDarkholme/yats.vim'
+Plug 'suan/vim-instant-markdown'
+Plug 'dart-lang/dart-vim-plugin'
 Plug 'Quramy/tsuquyomi'
-Plug 'w0rp/ale', { 'do': 'yarn global add prettier typescript ts-node && apt install -y clang-format' }
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'mhinz/vim-signify'
+Plug 'posva/vim-vue'
+
+" 目录和注释
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdcommenter'
+
 call plug#end()
 
-let g:ycm_clangd_binary_path = "/usr/lib/llvm-9/bin/clangd"
-colorscheme molokai
-call glaive#Install()
-Glaive codefmt plugin[mappings]
-Glaive codefmt google_java_executable="java -jar /java/google-java-format-1.7-all-deps.jar"
-augroup autoformat_settings
-  autocmd FileType java AutoFormatBuffer google-java-format
-  autocmd FileType python AutoFormatBuffer yapf
-augroup END
+let g:vim_vue_plugin_load_full_syntax = 1
 
-
-" md
-
-" dart
-" Bundle "thosakwe/vim-flutter"
-let g:lsc_server_commands = {'dart': 'dart_language_server'}
-let g:lsc_auto_map = v:true
-let g:lsc_auto_map = {'defaults': v:true, 'FindReferences': '<leader>r'}
-let g:lsc_auto_map = {'defaults': v:true, 'FindImplementations': ''}
-let g:lsc_auto_map = {
-      \ 'GoToDefinition': '<C-]>',
-      \ 'GoToDefinitionSplit': ['<C-W>]', '<C-W><C-]>'],
-      \ 'FindReferences': 'gr',
-      \ 'NextReference': '<C-n>',
-      \ 'PreviousReference': '<C-p>',
-      \ 'FindImplementations': 'gI',
-      \ 'FindCodeActions': 'ga',
-      \ 'Rename': 'gR',
-      \ 'ShowHover': v:true,
-      \ 'DocumentSymbol': 'go',
-      \ 'WorkspaceSymbol': 'gS',
-      \ 'SignatureHelp': '<C-m>',
-      \ 'Completion': 'omnifunc',
-      \}
+" 记录上次打开文件位置
+if has("autocmd")
+    autocmd BufRead *.txt set tw=78
+    autocmd BufReadPost *
+    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+    \   exe "normal g'\"" |
+    \ endif
+endif
 
 " 配色
 filetype indent on
 filetype plugin indent on
 filetype on
+colorscheme molokai
 syntax on
 set t_Co=256
 let g:molokai_original = 0
@@ -73,10 +53,6 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
-" html补全
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " 代码补全
 let g:ycm_min_num_of_chars_for_completion = 3
@@ -85,49 +61,17 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_key_list_select_completion = ["<c-n>", "<Down>"]
 let g:ycm_key_list_previous_completion = ["<c-p>", "<Up>"]
 
-" 文件夹和注释
-
-" svn和git提示
-
-
-" 语法错误提示
-let g:ale_linters = {
-      \   'javascript': ['eslint'],
-      \   'go': ['govet'],
-      \   'dart': ['language_server']
-      \}
-let g:airline#extensions#ale#enabled = 1
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 highlight ALEErrorSign ctermbg=235
 
-" 代码变动不检查
-" let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 0
-" 代码格式化
-let g:ale_fixers = {
-      \   'html': ['prettier'],
-      \   'css': ['prettier'],
-      \   'json': ['prettier'],
-      \   'javascript': ['prettier'],
-      \   'typescript': ['prettier'],
-      \   'go': ['gofmt'],
-      \   'dart': ['dartfmt'],
-      \   'c': ['clang-format'],
-      \   'java': ['google_java_format'],
-      \}
-let g:ale_linters_explicit = 1
-let g:ale_fix_on_save = 1
-
-" jsx高亮和缩进
 let g:jsx_ext_required = 0
 
 " typescript
 let g:typescript_ignore_browserwords = 1
 autocmd BufNewFile,BufRead *.ts set filetype=typescript
-autocmd BufNewFile,BufRead *.tsx set filetype=typescript
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
+autocmd BufNewFile,BufRead *.jsx set filetype=javascript.tsx
 
 " 缩进
 set ai
@@ -141,6 +85,7 @@ set ts=2
 set completeopt=preview,menu
 set autochdir
 set expandtab
+set cc=80
 
 " 字符
 set fileencodings=uft-8,gbk
@@ -151,10 +96,12 @@ set termencoding=utf-8
 set clipboard=unnamed
 
 " 文件类型设置
-autocmd BufNewFile,BufRead *.vue set filetype=html
+autocmd BufNewFile,BufRead *.vue set filetype=vue
 autocmd BufNewFile,BufRead *.wxml set filetype=javascript
 autocmd BufNewFile,BufRead *.wxss set filetype=css
 autocmd BufNewFile,BufRead *.dart set filetype=dart
+autocmd FileType scss setl iskeyword+=@-@
+"autocmd FileType less setl iskeyword+=@-@
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 " autocmd BufRead,BufNewFile *.tsx setlocal syntax=typescript.javascript
 autocmd FileType html setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -169,12 +116,10 @@ set nobackup nowritebackup noswapfile
 " 快捷键
 " map <CR> :call tern#Enable()<CR>
 imap <tab> <c-r>=MyTabFunction()<cr>
+"imap l <c-r>=MyTabFunction()<cr>
 nmap B :call Jsbeau()<CR>
 nmap Dir :NERDTreeMirror<CR>
 nmap Dir :NERDTreeToggle<CR>
-nmap Html :setlocal omnifunc=tern#Complete<CR> :set filetype=html<CR>
-nmap Css :setlocal omnifunc=csscomplete#CompleteCSS<CR> :set filetype=css<CR>
-nmap Js :setlocal omnifunc=tern#Complete<CR> :set filetype=javascript<CR>
 nmap Q <leader>cc
 nmap W <leader>cu
 nmap Nb :set number <CR>
@@ -185,13 +130,8 @@ nmap Np :set nopaste <CR>
 nmap r :call Run()<CR>
 
 
-" buffer快速导航
-nnoremap <Leader>a :YcmCompleter GoTo<CR>
-nnoremap <Leader>f :bp<CR>
-nnoremap <Leader>b :bn<CR>
-nnoremap <Leader>b :bn<CR>
-nnoremap <Leader>q :YcmCompleter OrganizeImports<CR>
-nnoremap <Leader><Leader> :YcmCompleter Format<CR>
+nmap <leader>rn <Plug>(coc-rename)
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " 查看buffers
 " left bbb = 'bp<bar>bd #'
@@ -210,29 +150,74 @@ nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
 
+" allow to scroll in the preview
+set mouse=a
+
+" mappings
+nnoremap <silent> <space><space> :<C-u>Rg<CR>
+nnoremap <silent> <space>c :<C-u>CocFzfList<CR>
+nnoremap <silent> <space>o       :<C-u>CocFzfList outline<CR>
+nnoremap <silent> <space>p       :<C-u>CocFzfListResume<CR>
+nnoremap <silent> <space>g      :<C-u>GFiles<CR>
+nnoremap <silent> <space>s      :<C-u>GFiles?<CR>
+nnoremap <silent> <space>l      :<C-u>Lines<CR>
+nnoremap <silent> <space>b      :<C-u>Buffers<CR>
+nmap gc <Plug>(coc-git-commit)
+" leetcode
+nnoremap <Leader><Leader> :CocList LeetcodeProblems<CR>
+nnoremap <Leader>r :CocCommand leetcode.run<CR>
+nnoremap <Leader>s :CocCommand leetcode.submit<CR>
+nnoremap <Leader>h :CocCommand leetcode.comments<CR>
+" flutter
+nnoremap <silent> <space>e      :<C-u>CocCommand flutter.emulators<CR>
+nnoremap <silent> <space>r      :<C-u>CocCommand flutter.run<<CR>
+
 " 运行
 func! Run()
   let file = expand("%")
   if stridx(file,".js")>-1
+    exec "w"
     exec "! clear && node %<"
   endif
   if stridx(file,".ts")>-1
-    exec "! clear && ts-node %"
+    exec "w"
+    "exec "! clear && ts-node %"
+    exec "! clear && yarn start"
   endif
   if stridx(file,".go")>-1
-    exec "! clear && go run %"
-"    exec "! curl http://127.0.0.1:6666/%<"
+     exec "w"
+     exec "! clear && go run %"
+"    exec "! curl http://127.0.0.1:8080/%<"
   endif
   if stridx(file,".dart")>-1
-    exec "! clear && dart --enable-asserts %"
+    exec "w"
+    "exec "! clear && dart --enable-asserts %"
+    exec "! clear && pub run ./index.dart"
   endif
   if stridx(file,".java")>-1
+    exec "w"
     exec "! clear && javac % && java %<"
   endif
-  if stridx(file,".c")>-1
+  if stridx(file,".py")>-1
+    exec "w"
+    exec "! clear && python3 %"
+  endif
+  if stridx(file,".rs")>-1
+    exec "w"
+    exec "! clear && cargo run"
+  endif
+  if stridx(file,".cs")>-1
+    exec "w"
+    exec "! clear && dotnet run"
+  elseif stridx(file,".cpp")>-1
+    exec "w"
+    exec "! clear && g++ % && ./a.out"
+  elseif stridx(file,".c")>-1
+    exec "w"
     exec "! clear && gcc % && ./a.out"
   endif
   if stridx(file,".m")>-1
+    exec "w"
     exec "! clear && gcc % -o objc -ObjC -framework Foundation && ./objc"
   endif
 endfunc
@@ -247,5 +232,3 @@ function! MyTabFunction ()
   endif
   return pumvisible() ? "\<c-n>" : "\<c-x>\<c-o>"
 endfunction
-
-" brew install cmake go
