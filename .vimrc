@@ -1,11 +1,13 @@
 " 插件
 call plug#begin('~/.vim/plugged')
 " coc
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-html coc-css coc-omnisharp coc-pyright coc-snippets coc-emmet coc-json coc-flutter coc-angular coc-vetur coc-java coc-json coc-prettier coc-git coc-go coc-clangd coc-rust-analyzer'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-html coc-css coc-omnisharp coc-pyright coc-snippets coc-emmet coc-json coc-flutter coc-angular coc-vetur coc-java coc-json coc-prettier coc-git coc-go coc-clangd coc-rust-analyzer coc-sourcekit coc-kotlin'}
 Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
 Plug 'junegunn/fzf.vim' " needed for previews
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 "Plug 'mauritsvdvijgh/flutter-reload.vim'
+" swift 格式化
+Plug 'w0rp/ale'
 
 " 代码片段
 Plug 'dumuzhou/vim-snippets'
@@ -21,6 +23,8 @@ Plug 'Quramy/tsuquyomi'
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'posva/vim-vue'
+Plug 'udalov/kotlin-vim'
+Plug 'keith/swift.vim'
 
 " 目录和注释
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -172,6 +176,17 @@ nnoremap <Leader>h :CocCommand leetcode.comments<CR>
 nnoremap <silent> <space>e      :<C-u>CocCommand flutter.emulators<CR>
 nnoremap <silent> <space>r      :<C-u>CocCommand flutter.run<<CR>
 
+
+" 代码格式化
+" 代码变动不检查
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_fixers = {
+      \   'swift': ['swiftformat'],
+      \}
+let g:ale_linters_explicit = 1
+let g:ale_fix_on_save = 1
+
 " 运行
 func! Run()
   let file = expand("%")
@@ -194,9 +209,17 @@ func! Run()
     "exec "! clear && dart --enable-asserts %"
     exec "! clear && pub run ./index.dart"
   endif
+  if stridx(file,".swift")>-1
+    exec "w"
+    exec "! clear && swiftc MyClass.swift main.swift && ./main"
+  endif
   if stridx(file,".java")>-1
     exec "w"
     exec "! clear && javac % && java %<"
+  endif
+  if stridx(file,".kt")>-1
+    exec "w"
+    exec "! clear && kotlinc main.kt -include-runtime -d main.jar && java -jar main.jar"
   endif
   if stridx(file,".py")>-1
     exec "w"
