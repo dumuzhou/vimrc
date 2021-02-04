@@ -1,0 +1,21 @@
+{
+  "leetcode.language": "java",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "c",
+    "cpp",
+    "go",
+    "dart",
+    "java",
+    "rust",
+    "cs",
+    "html",
+    "vue",
+    "css",
+    "scss",
+    "less",
+    "javascript",
+    "typescript",
+    "JSON",
+    "markdown"
+  ]
+}
