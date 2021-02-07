@@ -1,7 +1,7 @@
 " 插件
 call plug#begin('~/.vim/plugged')
 " coc
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-html coc-css coc-omnisharp coc-pyright coc-snippets coc-emmet coc-json coc-flutter coc-angular coc-vetur coc-java coc-json coc-prettier coc-git coc-go coc-clangd coc-rust-analyzer coc-sourcekit coc-kotlin'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-html coc-css coc-omnisharp coc-pyright coc-snippets coc-emmet coc-json coc-flutter coc-angular coc-vetur coc-java coc-json coc-prettier coc-git coc-go coc-clangd coc-rust-analyzer coc-sourcekit coc-kotlin coc-leetcode'}
 Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
 Plug 'junegunn/fzf.vim' " needed for previews
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
