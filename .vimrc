@@ -7,7 +7,7 @@ Plug 'junegunn/fzf.vim' " needed for previews
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 "Plug 'mauritsvdvijgh/flutter-reload.vim'
 " swift 格式化
-Plug 'w0rp/ale'
+Plug 'w0rp/ale', {'tag': 'v2.5.0'}
 
 " 代码片段
 Plug 'dumuzhou/vim-snippets'
@@ -25,6 +25,7 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'posva/vim-vue'
 Plug 'udalov/kotlin-vim'
 Plug 'keith/swift.vim'
+Plug 'groenewege/vim-less'
 
 " 目录和注释
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -105,10 +106,11 @@ autocmd BufNewFile,BufRead *.wxml set filetype=javascript
 autocmd BufNewFile,BufRead *.wxss set filetype=css
 autocmd BufNewFile,BufRead *.dart set filetype=dart
 autocmd FileType scss setl iskeyword+=@-@
+autocmd FileType less setl iskeyword+=@-@
 "autocmd FileType less setl iskeyword+=@-@
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 " autocmd BufRead,BufNewFile *.tsx setlocal syntax=typescript.javascript
-autocmd FileType html setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType html setlocal omnifunc=javascriptcomplete#CompleteJS
 if !exists("g:ycm_semantic_triggers")
   let g:ycm_semantic_triggers = {}
 endif
