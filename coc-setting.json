@@ -16,7 +16,9 @@
     "scss",
     "less",
     "javascript",
+    "javascriptreact",
     "typescript",
+    "typescriptreact",
     "JSON",
     "markdown"
   ]
