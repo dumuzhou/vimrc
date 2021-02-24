@@ -76,7 +76,7 @@ let g:jsx_ext_required = 0
 let g:typescript_ignore_browserwords = 1
 autocmd BufNewFile,BufRead *.ts set filetype=typescript
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
-autocmd BufNewFile,BufRead *.jsx set filetype=javascript.tsx
+autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 
 " 缩进
 set ai
