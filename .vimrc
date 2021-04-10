@@ -1,10 +1,11 @@
 " 插件
 call plug#begin('~/.vim/plugged')
 " coc
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-html coc-css coc-omnisharp coc-pyright coc-snippets coc-emmet coc-json coc-flutter coc-angular coc-vetur coc-java coc-json coc-prettier coc-git coc-go coc-clangd coc-rust-analyzer coc-sourcekit coc-kotlin coc-leetcode'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-styled-components coc-html coc-css coc-omnisharp coc-pyright coc-snippets coc-emmet coc-json coc-flutter coc-angular coc-vetur coc-java coc-json coc-prettier coc-git coc-go coc-clangd coc-rust-analyzer coc-sourcekit coc-kotlin coc-leetcode'}
 Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
 Plug 'junegunn/fzf.vim' " needed for previews
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+Plug 'ervandew/supertab'
 "Plug 'mauritsvdvijgh/flutter-reload.vim'
 " swift 格式化
 Plug 'w0rp/ale', {'tag': 'v2.5.0'}
@@ -32,6 +33,9 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/nerdcommenter'
 
 call plug#end()
+
+
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 let g:vim_vue_plugin_load_full_syntax = 1
 
@@ -101,6 +105,7 @@ set termencoding=utf-8
 set clipboard=unnamed
 
 " 文件类型设置
+autocmd BufNewFile,BufRead *.myrc set filetype=zsh
 autocmd BufNewFile,BufRead *.vue set filetype=vue
 autocmd BufNewFile,BufRead *.wxml set filetype=javascript
 autocmd BufNewFile,BufRead *.wxss set filetype=css
@@ -120,9 +125,6 @@ let g:ycm_semantic_triggers['typescript'] = ['.']
 set nobackup nowritebackup noswapfile
 
 " 快捷键
-" map <CR> :call tern#Enable()<CR>
-imap <tab> <c-r>=MyTabFunction()<cr>
-"imap l <c-r>=MyTabFunction()<cr>
 nmap B :call Jsbeau()<CR>
 nmap Dir :NERDTreeMirror<CR>
 nmap Dir :NERDTreeToggle<CR>
@@ -246,14 +248,3 @@ func! Run()
     exec "! clear && gcc % -o objc -ObjC -framework Foundation && ./objc"
   endif
 endfunc
-
-" tab补全
-function! MyTabFunction ()
-  let line = getline(".")
-  let substr = strpart(line, -1, col(".")+1)
-  let substr = matchstr(substr, "[^ \t]*$")
-  if strlen(substr) == 0
-    return "\<tab>"
-  endif
-  return pumvisible() ? "\<c-n>" : "\<c-x>\<c-o>"
-endfunction
